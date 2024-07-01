@@ -31,16 +31,6 @@ variable "ami_name_prefix_al2023" {
   default     = "unofficial-amzn2023-ami-ecs"
 }
 
-variable "ami_version_al1" {
-  type        = string
-  description = "Outputted AMI version."
-}
-
-variable "ami_version_al2" {
-  type        = string
-  description = "Outputted AMI version."
-}
-
 variable "ami_version_al2023" {
   type        = string
   description = "Outputted AMI version."
@@ -111,26 +101,6 @@ variable "exec_ssm_version" {
   default     = "3.2.2303.0"
 }
 
-variable "source_ami_al2" {
-  type        = string
-  description = "Amazon Linux 2 source AMI to build from."
-}
-
-variable "source_ami_al2arm" {
-  type        = string
-  description = "Amazon Linux 2 ARM source AMI to build from."
-}
-
-variable "source_ami_al2kernel5dot10" {
-  type        = string
-  description = "Amazon Linux 2 Kernel 5.10 source AMI to build from."
-}
-
-variable "source_ami_al2kernel5dot10arm" {
-  type        = string
-  description = "Amazon Linux 2 Kernel 5.10 ARM source AMI to build from."
-}
-
 variable "source_ami_al2023" {
   type        = string
   description = "Amazon Linux 2023 source AMI to build from."
@@ -156,32 +126,9 @@ variable "kernel_version_al2023arm" {
   description = "Amazon Linux 2023 ARM kernel version."
 }
 
-variable "source_ami_al1" {
-  type        = string
-  description = "Amazon Linux 1 source AMI to build from."
-}
-
-variable "docker_version_al1" {
-  type        = string
-  description = "Docker version to build AL1 AMI with."
-  default     = "20.10.13"
-}
-
-variable "ecs_version_al1" {
-  type        = string
-  description = "ECS version to build AL1 AMI with."
-  default     = "1.51.0"
-}
-
 variable "air_gapped" {
   type        = string
   description = "If this build is for an air-gapped region, set to 'true'"
-  default     = ""
-}
-
-variable "ecs_init_url_al2" {
-  type        = string
-  description = "Specify a particular ECS init URL for AL2 to install. If empty it will use the standard path."
   default     = ""
 }
 

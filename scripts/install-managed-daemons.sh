@@ -7,7 +7,7 @@ if [ -n "$AIR_GAPPED" ]; then
 fi
 
 WORK_DIR="$(mktemp -d)"
-trap "rm -rf ${WORK_DIR}" EXIT
+trap 'rm -rf "${WORK_DIR}"' EXIT
 
 # gpg key is taken from https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-install.html
 cat >"$WORK_DIR/amazon-ecs-agent.gpg" <<EOF

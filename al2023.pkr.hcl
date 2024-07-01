@@ -36,8 +36,6 @@ source "amazon-ebs" "al2023" {
 build {
   sources = [
     "source.amazon-ebs.al2023",
-    "source.amazon-ebs.al2023arm",
-    "source.amazon-ebs.al2023neu"
   ]
 
   provisioner "file" {
