@@ -1,10 +1,10 @@
 locals {
-  ami_name_al2023 = "${var.ami_name_prefix_al2023}-hvm-2023.0.${var.ami_version_al2023}${var.kernel_version_al2023}-x86_64"
+  ami_name = "${var.ami_name_prefix}-hvm-2023.0.${var.ami_version}${var.kernel_version}-x86_64"
 }
 
 source "amazon-ebs" "al2023" {
-  ami_name        = "${local.ami_name_al2023}"
-  ami_description = "Amazon Linux AMI 2023.0.${var.ami_version_al2023} x86_64 ECS HVM EBS"
+  ami_name        = "${local.ami_name}"
+  ami_description = "Amazon Linux AMI 2023.0.${var.ami_version} x86_64 ECS HVM EBS"
   instance_type   = var.general_purpose_instance_types[0]
   launch_block_device_mappings {
     volume_size           = var.block_device_size_gb
@@ -15,7 +15,7 @@ source "amazon-ebs" "al2023" {
   region = var.region
   source_ami_filter {
     filters = {
-      name = "${var.source_ami_al2023}"
+      name = "${var.source_ami}"
     }
     owners             = ["amazon"]
     most_recent        = true
@@ -26,10 +26,10 @@ source "amazon-ebs" "al2023" {
   tags = {
     os_version          = "Amazon Linux 2023"
     source_image_name   = "{{ .SourceAMIName }}"
-    ecs_runtime_version = "Docker version ${var.docker_version_al2023}"
+    ecs_runtime_version = "Docker version ${var.docker_version}"
     ecs_agent_version   = "${var.ecs_agent_version}"
     ami_type            = "al2023"
-    ami_version         = "2023.0.${var.ami_version_al2023}"
+    ami_version         = "2023.0.${var.ami_version}"
   }
 }
 
@@ -52,7 +52,7 @@ build {
   }
 
   provisioner "shell" {
-    script = "scripts/al2023/setup-motd.sh"
+    script = "scripts/setup-motd.sh"
   }
 
   provisioner "shell" {
@@ -65,7 +65,7 @@ build {
   provisioner "shell" {
     inline_shebang = "/bin/sh -ex"
     inline = [
-      "sudo dnf update -y --releasever=${var.distribution_release_al2023}"
+      "sudo dnf update -y --releasever=${var.distribution_release}"
     ]
   }
 
@@ -77,7 +77,7 @@ build {
   provisioner "shell" {
     inline_shebang = "/bin/sh -ex"
     inline = [
-      "sudo dnf install -y ${local.packages_al2023}",
+      "sudo dnf install -y ${local.packages}",
       "sudo dnf swap -y gnupg2-minimal gnupg2-full"
     ]
   }
@@ -89,9 +89,9 @@ build {
   provisioner "shell" {
     script = "scripts/install-docker.sh"
     environment_vars = [
-      "DOCKER_VERSION=${var.docker_version_al2023}",
-      "CONTAINERD_VERSION=${var.containerd_version_al2023}",
-      "RUNC_VERSION=${var.runc_version_al2023}",
+      "DOCKER_VERSION=${var.docker_version}",
+      "CONTAINERD_VERSION=${var.containerd_version}",
+      "RUNC_VERSION=${var.runc_version}",
       "AIR_GAPPED=${var.air_gapped}"
     ]
   }
@@ -103,7 +103,7 @@ build {
       "AGENT_VERSION=${var.ecs_agent_version}",
       "INIT_REV=${var.ecs_init_rev}",
       "AL_NAME=amzn2023",
-      "ECS_INIT_URL=${var.ecs_init_url_al2023}",
+      "ECS_INIT_URL=${var.ecs_init_url}",
       "AIR_GAPPED=${var.air_gapped}",
       "ECS_INIT_LOCAL_OVERRIDE=${var.ecs_init_local_override}"
     ]

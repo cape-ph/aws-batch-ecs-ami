@@ -8,30 +8,16 @@ packer {
 }
 
 locals {
-  packages_al1    = "amazon-efs-utils ec2-net-utils acpid irqbalance numactl rng-tools docker-storage-setup"
-  packages_al2    = "amazon-efs-utils ec2-net-utils acpid amazon-ssm-agent yum-plugin-upgrade-helper"
-  packages_al2023 = "amazon-efs-utils amazon-ssm-agent amazon-ec2-net-utils acpid"
+  packages = "amazon-efs-utils amazon-ssm-agent amazon-ec2-net-utils acpid"
 }
 
-variable "ami_name_prefix_al1" {
-  type        = string
-  description = "Outputted AMI name prefix."
-  default     = "unofficial-amzn-ami-2018.03."
-}
-
-variable "ami_name_prefix_al2" {
-  type        = string
-  description = "Outputted AMI name prefix."
-  default     = "unofficial-amzn2-ami-ecs"
-}
-
-variable "ami_name_prefix_al2023" {
+variable "ami_name_prefix" {
   type        = string
   description = "Outputted AMI name prefix."
   default     = "unofficial-amzn2023-ami-ecs"
 }
 
-variable "ami_version_al2023" {
+variable "ami_version" {
   type        = string
   description = "Outputted AMI version."
 }
@@ -61,35 +47,17 @@ variable "ecs_init_rev" {
 
 variable "docker_version" {
   type        = string
-  description = "Docker version to build AMI with."
-  default     = "20.10.25"
-}
-
-variable "containerd_version" {
-  type        = string
-  description = "Containerd version to build AMI with."
-  default     = "1.7.11"
-}
-
-variable "runc_version" {
-  type        = string
-  description = "Runc version to build AMI with."
-  default     = "1.1.11"
-}
-
-variable "docker_version_al2023" {
-  type        = string
   description = "Docker version to build AL2023 AMI with."
   default     = "25.0.3"
 }
 
-variable "containerd_version_al2023" {
+variable "containerd_version" {
   type        = string
   description = "Containerd version to build AL2023 AMI with."
   default     = "1.7.11"
 }
 
-variable "runc_version_al2023" {
+variable "runc_version" {
   type        = string
   description = "Runc version to build AL2023 AMI with."
   default     = "1.1.11"
@@ -101,27 +69,27 @@ variable "exec_ssm_version" {
   default     = "3.2.2303.0"
 }
 
-variable "source_ami_al2023" {
+variable "source_ami" {
   type        = string
   description = "Amazon Linux 2023 source AMI to build from."
 }
 
-variable "source_ami_al2023arm" {
+variable "source_ami_arm" {
   type        = string
   description = "Amazon Linux 2023 ARM source AMI to build from."
 }
 
-variable "distribution_release_al2023" {
+variable "distribution_release" {
   type        = string
   description = "Amazon Linux 2023 distribution release."
 }
 
-variable "kernel_version_al2023" {
+variable "kernel_version" {
   type        = string
   description = "Amazon Linux 2023 kernel version."
 }
 
-variable "kernel_version_al2023arm" {
+variable "kernel_version_arm" {
   type        = string
   description = "Amazon Linux 2023 ARM kernel version."
 }
@@ -132,7 +100,7 @@ variable "air_gapped" {
   default     = ""
 }
 
-variable "ecs_init_url_al2023" {
+variable "ecs_init_url" {
   type        = string
   description = "Specify a particular ECS init URL for AL2023 to install. If empty it will use the standard path."
   default     = ""
