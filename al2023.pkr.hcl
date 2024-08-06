@@ -77,7 +77,7 @@ build {
   provisioner "shell" {
     inline_shebang = "/bin/sh -ex"
     inline = [
-      "sudo dnf install -y ${local.packages}",
+      "sudo dnf install -y ${local.packages} ${var.additional_packages}",
       "sudo dnf swap -y gnupg2-minimal gnupg2-full"
     ]
   }

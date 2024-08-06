@@ -11,6 +11,12 @@ locals {
   packages = "amazon-efs-utils amazon-ssm-agent amazon-ec2-net-utils acpid"
 }
 
+variable "additional_packages" {
+  type        = string
+  description = "Additional packages to be installed with yum/dnf"
+  default     = ""
+}
+
 variable "ami_name_prefix" {
   type        = string
   description = "Outputted AMI name prefix."
