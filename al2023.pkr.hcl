@@ -58,7 +58,8 @@ build {
   provisioner "shell" {
     inline_shebang = "/bin/sh -ex"
     inline = [
-      "mkdir /tmp/additional-packages"
+      "mkdir /tmp/additional-packages",
+      "mkdir /tmp/additional-scripts"
     ]
   }
 
@@ -72,6 +73,11 @@ build {
   provisioner "file" {
     source      = "additional-packages/"
     destination = "/tmp/additional-packages"
+  }
+
+  provisioner "file" {
+    source      = "scripts/additional-scripts/"
+    destination = "/tmp/additional-scripts"
   }
 
   provisioner "shell" {
@@ -126,6 +132,13 @@ build {
 
   provisioner "shell" {
     script = "scripts/install-additional-packages.sh"
+  }
+
+  provisioner "shell" {
+    script = "scripts/additional-scripts.sh"
+    environment_vars = [
+      "AMI_PREFIX=${var.ami_name_prefix}",
+    ]
   }
 
   ### exec
