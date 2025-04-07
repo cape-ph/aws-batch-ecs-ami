@@ -11,7 +11,7 @@ sudo npm install -g configurable-http-proxy
 sudo python3 -m venv "${JUPYTERHUB_PATH}"
 
 # install jupyterhub into our environment
-sudo "${JUPYTERHUB_PATH}"/bin/pip install jupyterhub jupyterlab notebook
+sudo "${JUPYTERHUB_PATH}"/bin/pip install jupyterhub jupyterlab notebook oauthenticator
 
 # copy default jupyterhub config
 sudo mkdir -p "${JUPYTERHUB_PATH}"/etc/jupyterhub
