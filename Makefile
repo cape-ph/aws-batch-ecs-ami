@@ -37,3 +37,11 @@ validate-nextflow: check-region init nextflow.pkrvars.hcl
 .PHONY: build-nextflow
 build-nextflow: check-region init validate release.auto.pkrvars.hcl nextflow.pkrvars.hcl
 	packer build -only="amazon-ebs.al2023" -var "region=${REGION}" --var-file="nextflow.pkrvars.hcl" .
+
+.PHONY: validate-jupyterhub
+validate-jupyterhub: check-region init jupyterhub.pkrvars.hcl
+	packer validate -var "region=${REGION}" --var-file="jupyterhub.pkrvars.hcl" .
+
+.PHONY: build-jupyterhub
+build-jupyterhub: check-region init validate release.auto.pkrvars.hcl jupyterhub.pkrvars.hcl
+	packer build -only="amazon-ebs.al2023" -var "region=${REGION}" --var-file="jupyterhub.pkrvars.hcl" .
