@@ -4,6 +4,9 @@ set -ex
 AMI_SCRIPTS=/tmp/additional-scripts/"${AMI_PREFIX}"
 JUPYTERHUB_PATH=/opt/jupyterhub
 
+#  add jupyterhub groups
+sudo groupadd --force jupyterhub-users
+
 # install http proxy
 sudo npm install -g configurable-http-proxy
 
