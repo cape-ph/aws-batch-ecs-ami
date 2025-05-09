@@ -45,3 +45,12 @@ validate-jupyterhub: check-region init jupyterhub.pkrvars.hcl
 .PHONY: build-jupyterhub
 build-jupyterhub: check-region init validate release.auto.pkrvars.hcl jupyterhub.pkrvars.hcl
 	packer build -only="amazon-ebs.al2023" -var "region=${REGION}" --var-file="jupyterhub.pkrvars.hcl" .
+
+
+.PHONY: validate-opa
+validate-opa: check-region init opa.pkrvars.hcl
+	packer validate -var "region=${REGION}" --var-file="opa.pkrvars.hcl" .
+
+.PHONY: build-opa
+build-opa: check-region init validate release.auto.pkrvars.hcl opa.pkrvars.hcl
+	packer build -only="amazon-ebs.al2023" -var "region=${REGION}" --var-file="opa.pkrvars.hcl" .
