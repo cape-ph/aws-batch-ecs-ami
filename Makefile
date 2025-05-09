@@ -1,3 +1,5 @@
+REGION ?= us-east-2
+
 .PHONY: check-packer
 check-packer:
 	@bash -c "if ! command -v packer &> /dev/null; then echo 'ERROR: packer could not be found. Make sure it is installed and in the PATH'; exit 1; fi"
