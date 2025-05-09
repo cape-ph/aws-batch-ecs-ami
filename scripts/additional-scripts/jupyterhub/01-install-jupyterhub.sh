@@ -16,6 +16,9 @@ sudo python3 -m venv "${JUPYTERHUB_PATH}"
 # install jupyterhub into our environment
 sudo "${JUPYTERHUB_PATH}"/bin/pip install jupyterhub jupyterlab notebook oauthenticator
 
+# install AWS tooling
+sudo "${JUPYTERHUB_PATH}"/bin/pip install boto3
+
 # copy default jupyterhub config
 sudo mkdir -p "${JUPYTERHUB_PATH}"/etc/jupyterhub
 sudo cp "${AMI_SCRIPTS}"/jupyterhub_config.py "${JUPYTERHUB_PATH}"/etc/jupyterhub/jupyterhub_config.py
