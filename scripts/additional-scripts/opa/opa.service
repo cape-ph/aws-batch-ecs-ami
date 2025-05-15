@@ -12,7 +12,7 @@ WorkingDirectory=/run/opa
 
 Restart=always
 RestartSec=5
-Restart=on-failure
+Restart=on-abnormal
 
 DynamicUser=yes
 ProtectSystem=full
