@@ -1,0 +1,9 @@
+# by default we have no services, bundles, decision_logs, or statii. all of 
+# this will come from the configuration that will be given to the instance 
+# when it is spun up for a specific task
+labels:
+  app: cape-opa-default-config
+  region: east
+  environment: dev
+
+default_decision: deny

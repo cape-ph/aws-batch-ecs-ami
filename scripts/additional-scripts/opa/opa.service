@@ -1,0 +1,22 @@
+[Unit]
+Description=CAPE Open Policy Agent
+After=network.target
+StartLimitInterval=60
+StartLimitBurst=4
+
+[Service]
+ExecStart=/usr/local/bin/opa run --server --addr=0.0.0.0:8181 --config-file=/etc/opa/config/opa-config.yaml
+
+RuntimeDirectory=opa
+WorkingDirectory=/run/opa
+
+Restart=always
+RestartSec=5
+Restart=on-abnormal
+
+DynamicUser=yes
+ProtectSystem=full
+PrivateTmp=yes
+
+[Install]
+WantedBy=multi-user.target
