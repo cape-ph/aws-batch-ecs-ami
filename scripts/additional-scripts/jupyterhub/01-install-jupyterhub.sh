@@ -4,11 +4,18 @@ set -ex
 AMI_SCRIPTS=/tmp/additional-scripts/"${AMI_PREFIX}"
 JUPYTERHUB_PATH=/opt/jupyterhub
 
+sudo mkdir -p "${JUPYTERHUB_PATH}"
+
+sudo tee ${JUPYTERHUB_PATH}/env <<EOF
+JUPYTERHUB_CRYPT_KEY=$(openssl rand -hex 32)
+PATH=/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/opt/jupyterhub/bin
+EOF
+
 #  add jupyterhub groups
 sudo groupadd --force jupyterhub-users
 
 # install http proxy
-sudo npm install -g configurable-http-proxy
+sudo npm install -g configurable-http-proxy@4
 
 # create jupyterhub environment
 sudo python3 -m venv "${JUPYTERHUB_PATH}"
