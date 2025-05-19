@@ -24,7 +24,7 @@ sudo python3 -m venv "${JUPYTERHUB_PATH}"
 sudo "${JUPYTERHUB_PATH}"/bin/pip install jupyterhub jupyterlab notebook oauthenticator
 
 # install AWS tooling
-sudo "${JUPYTERHUB_PATH}"/bin/pip install boto3
+sudo "${JUPYTERHUB_PATH}"/bin/pip install boto3 awswrangler
 
 # copy default jupyterhub config
 sudo mkdir -p "${JUPYTERHUB_PATH}"/etc/jupyterhub
