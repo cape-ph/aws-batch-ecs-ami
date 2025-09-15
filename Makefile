@@ -48,7 +48,6 @@ validate-jupyterhub: check-region init jupyterhub.pkrvars.hcl
 build-jupyterhub: check-region init validate release.auto.pkrvars.hcl jupyterhub.pkrvars.hcl
 	packer build -only="amazon-ebs.al2023" -var "region=${REGION}" --var-file="jupyterhub.pkrvars.hcl" .
 
-
 .PHONY: validate-opa
 validate-opa: check-region init opa.pkrvars.hcl
 	packer validate -var "region=${REGION}" --var-file="opa.pkrvars.hcl" .
@@ -56,3 +55,11 @@ validate-opa: check-region init opa.pkrvars.hcl
 .PHONY: build-opa
 build-opa: check-region init validate release.auto.pkrvars.hcl opa.pkrvars.hcl
 	packer build -only="amazon-ebs.al2023" -var "region=${REGION}" --var-file="opa.pkrvars.hcl" .
+
+.PHONY: validate-cape-frontend
+validate-cape-frontend: check-region init cape-frontend.pkrvars.hcl
+	packer validate -var "region=${REGION}" --var-file="cape-frontend.pkrvars.hcl" .
+
+.PHONY: build-cape-frontend
+build-cape-frontend: check-region init validate release.auto.pkrvars.hcl cape-frontend.pkrvars.hcl
+	packer build -only="amazon-ebs.al2023" -var "region=${REGION}" --var-file="cape-frontend.pkrvars.hcl" .
