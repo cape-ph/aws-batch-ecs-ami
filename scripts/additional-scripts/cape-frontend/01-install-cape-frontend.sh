@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -ex
 
+sudo alternatives --set node /usr/bin/node-22
+
 AMI_SCRIPTS=/tmp/additional-scripts/"${AMI_PREFIX}"
 CAPE_FRONTEND_PATH=/opt/cape-frontend
 
@@ -18,7 +20,7 @@ EOF
 cd /opt/cape-frontend/repo
 
 # install dependencies
-sudo npm install --force
+sudo npm install --include=optional
 
 # build web app
 sudo npm run build
