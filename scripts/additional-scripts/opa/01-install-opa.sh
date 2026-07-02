@@ -3,7 +3,7 @@ set -ex
 
 AMI_SCRIPTS=/tmp/additional-scripts/"${AMI_PREFIX}"
 
-OPA_VERSION=v1.4.2
+OPA_VERSION=v1.18.0
 LOCAL_BIN=/usr/local/bin
 OPA_ETC_PATH=/etc/opa
 
