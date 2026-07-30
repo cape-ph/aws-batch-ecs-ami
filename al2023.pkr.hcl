@@ -21,8 +21,11 @@ source "amazon-ebs" "al2023" {
     most_recent        = true
     include_deprecated = true
   }
-  ssh_interface = "public_ip"
-  ssh_username  = "ec2-user"
+  ssh_interface               = "private_ip"
+  ssh_username                = "ec2-user"
+  vpc_id                      = "vpc-092a6c85f02d790b2"
+  subnet_id                   = "subnet-0179187d613306876"
+  associate_public_ip_address = false
   tags = {
     os_version          = "Amazon Linux 2023"
     source_image_name   = "{{ .SourceAMIName }}"
