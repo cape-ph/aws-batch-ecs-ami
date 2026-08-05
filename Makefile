@@ -48,6 +48,14 @@ validate-nextflow-kraken2: check-region init nextflow-kraken2.pkrvars.hcl
 build-nextflow-kraken2: check-region init validate release.auto.pkrvars.hcl nextflow-kraken2.pkrvars.hcl
 	packer build -only="amazon-ebs.al2023" -var "region=${REGION}" --var-file="nextflow-kraken2.pkrvars.hcl" .
 
+.PHONY: validate-rabits
+validate-rabits: check-region init rabits.pkrvars.hcl
+	packer validate -var "region=${REGION}" --var-file="rabits.pkrvars.hcl" .
+
+.PHONY: build-rabits
+build-rabits: check-region init validate release.auto.pkrvars.hcl rabits.pkrvars.hcl
+	packer build -only="amazon-ebs.al2023" -var "region=${REGION}" --var-file="rabits.pkrvars.hcl" .
+
 .PHONY: validate-jupyterhub
 validate-jupyterhub: check-region init jupyterhub.pkrvars.hcl
 	packer validate -var "region=${REGION}" --var-file="jupyterhub.pkrvars.hcl" .
