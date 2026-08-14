@@ -79,3 +79,11 @@ validate-cape-frontend: check-region init cape-frontend.pkrvars.hcl
 .PHONY: build-cape-frontend
 build-cape-frontend: check-region init validate release.auto.pkrvars.hcl cape-frontend.pkrvars.hcl
 	packer build -only="amazon-ebs.al2023" -var "region=${REGION}" --var-file="cape-frontend.pkrvars.hcl" .
+
+.PHONY: validate-cape-frontend-aiken
+validate-cape-frontend-aiken: check-region init cape-frontend-aiken.pkrvars.hcl
+	packer validate -var "region=${REGION}" --var-file="cape-frontend-aiken.pkrvars.hcl" .
+
+.PHONY: build-cape-frontend-aiken
+build-cape-frontend-aiken: check-region init validate release.auto.pkrvars.hcl cape-frontend-aiken.pkrvars.hcl
+	packer build -only="amazon-ebs.al2023" -var "region=${REGION}" --var-file="cape-frontend-aiken.pkrvars.hcl" .

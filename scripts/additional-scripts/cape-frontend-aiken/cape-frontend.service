@@ -1,0 +1,12 @@
+[Unit]
+Description=CAPE Frontend
+After=syslog.target network.target
+
+[Service]
+User=root
+EnvironmentFile=/opt/cape-frontend/env
+WorkingDirectory=/opt/cape-frontend/repo
+ExecStart=node build
+
+[Install]
+WantedBy=multi-user.target
