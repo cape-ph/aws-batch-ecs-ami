@@ -2,10 +2,18 @@ REGION ?= us-east-2
 
 .PHONY: check-packer
 check-packer:
-	@bash -c "if ! command -v packer &> /dev/null; then echo 'ERROR: packer could not be found. Make sure it is installed and in the PATH'; exit 1; fi"
+	@packer_path="$$(command -v packer || true)"; \
+	if [ -z "$$packer_path" ]; then \
+		echo 'ERROR: HashiCorp Packer could not be found. Make sure the mise-managed Packer is in PATH'; \
+		exit 1; \
+	fi; \
+	if ! packer version 2>/dev/null | grep -q '^Packer v'; then \
+		echo "ERROR: $$packer_path is not HashiCorp Packer. Use the mise-managed Packer for this repository"; \
+		exit 1; \
+	fi
 
 .PHONY: init
-init:
+init: check-packer
 	packer init .
 
 .PHONY: check-region
