@@ -1,0 +1,16 @@
+[Unit]
+Description=Mount configured EFS resources before ECS starts
+Wants=network-online.target
+After=network-online.target
+Before=ecs.service
+Before=umount.target
+Conflicts=umount.target
+
+[Service]
+Type=oneshot
+EnvironmentFile=-/etc/ecs/efs-mounter.env
+ExecStart=/usr/local/sbin/ecs-efs-mounter mount
+ExecStop=/usr/local/sbin/ecs-efs-mounter unmount
+RemainAfterExit=yes
+TimeoutStartSec=5min
+TimeoutStopSec=2min

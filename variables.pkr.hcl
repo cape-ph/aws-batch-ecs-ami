@@ -8,7 +8,7 @@ packer {
 }
 
 locals {
-  packages = "amazon-efs-utils amazon-ssm-agent amazon-ec2-net-utils acpid"
+  packages = "amazon-efs-utils amazon-ssm-agent amazon-ec2-net-utils acpid jq"
 }
 
 variable "additional_packages" {
