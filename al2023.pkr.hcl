@@ -160,6 +160,7 @@ build {
     script = "scripts/additional-scripts.sh"
     environment_vars = [
       "AMI_PREFIX=${var.ami_name_prefix}",
+      "ADDITIONAL_SCRIPTS_PREFIX=${var.additional_scripts_prefix}",
     ]
   }
 

@@ -23,6 +23,12 @@ variable "ami_name_prefix" {
   default     = "unofficial-amzn2023-ami-ecs"
 }
 
+variable "additional_scripts_prefix" {
+  type        = string
+  description = "Profile directory under scripts/additional-scripts to execute."
+  default     = ""
+}
+
 variable "ami_version" {
   type        = string
   description = "Outputted AMI version."

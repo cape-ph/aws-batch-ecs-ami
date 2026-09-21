@@ -1,2 +1,3 @@
-ami_name_prefix     = "opa"
+ami_name_prefix           = "opa"
+additional_scripts_prefix = "opa"
 
