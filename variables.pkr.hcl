@@ -8,7 +8,7 @@ packer {
 }
 
 locals {
-  packages = "amazon-efs-utils amazon-ssm-agent amazon-ec2-net-utils acpid"
+  packages = "amazon-efs-utils amazon-ssm-agent amazon-ec2-net-utils acpid jq"
 }
 
 variable "additional_packages" {
@@ -21,6 +21,12 @@ variable "ami_name_prefix" {
   type        = string
   description = "Outputted AMI name prefix."
   default     = "unofficial-amzn2023-ami-ecs"
+}
+
+variable "additional_scripts_prefix" {
+  type        = string
+  description = "Profile directory under scripts/additional-scripts to execute."
+  default     = ""
 }
 
 variable "ami_version" {

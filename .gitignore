@@ -1,1 +1,6 @@
 manifest.json
+
+# Ignore artifacts from cracklib-packer shadowing HashiCorp Packer.
+*.hwm
+*.pwd
+*.pwi

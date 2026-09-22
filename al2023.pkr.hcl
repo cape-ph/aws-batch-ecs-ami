@@ -133,6 +133,25 @@ build {
     script = "scripts/append-efs-client-info.sh"
   }
 
+  provisioner "file" {
+    source      = "scripts/ecs-efs-mounter.sh"
+    destination = "/tmp/ecs-efs-mounter.sh"
+  }
+
+  provisioner "file" {
+    source      = "files/ecs-efs-mounter.service"
+    destination = "/tmp/ecs-efs-mounter.service"
+  }
+
+  provisioner "file" {
+    source      = "files/ecs.service.d/10-ecs-efs-mounter.conf"
+    destination = "/tmp/10-ecs-efs-mounter.conf"
+  }
+
+  provisioner "shell" {
+    script = "scripts/install-efs-mounter.sh"
+  }
+
   provisioner "shell" {
     script = "scripts/install-additional-packages.sh"
   }
@@ -141,6 +160,7 @@ build {
     script = "scripts/additional-scripts.sh"
     environment_vars = [
       "AMI_PREFIX=${var.ami_name_prefix}",
+      "ADDITIONAL_SCRIPTS_PREFIX=${var.additional_scripts_prefix}",
     ]
   }
 
